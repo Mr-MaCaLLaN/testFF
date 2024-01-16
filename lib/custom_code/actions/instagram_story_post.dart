@@ -59,16 +59,9 @@ Future instagramStoryPost(
       });
     }
   } else {
-    String colorTop = backgroundTopColor!
-        .toHex()
-        .toString()
-        .toUpperCase()
-        .replaceAll("#", "");
-    String colorBottom = backgroundBottomColor!
-        .toHex()
-        .toString()
-        .toUpperCase()
-        .replaceAll("#", "");
+    String colorTop = backgroundTopColor!.toHex().toString().toUpperCase();
+    String colorBottom =
+        backgroundBottomColor!.toHex().toString().toUpperCase();
     if (url != null) {
       SocialShare.shareInstagramStory(
         appId: FFAppState().facebookAppID,
