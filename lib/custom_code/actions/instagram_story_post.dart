@@ -19,7 +19,6 @@ Future instagramStoryPost(
   String? backgroundImage,
   Color? backgroundTopColor,
   Color? backgroundBottomColor,
-  String? url,
 ) async {
   String imagePath = "";
   String backgroundImagePath = "";
@@ -40,48 +39,26 @@ Future instagramStoryPost(
     await fileBackground
         .writeAsBytes(Uint8List.fromList(responseBackground.data));
     backgroundImagePath = fileBackground.path;
-    if (url != null) {
-      SocialShare.shareInstagramStory(
-        appId: FFAppState().facebookAppID,
-        imagePath: imagePath,
-        backgroundResourcePath: backgroundImagePath,
-        attributionURL: url,
-      ).then((data) {
-        print(data);
-      });
-    } else {
-      SocialShare.shareInstagramStory(
-        appId: FFAppState().facebookAppID,
-        imagePath: imagePath,
-        backgroundResourcePath: backgroundImagePath,
-      ).then((data) {
-        print(data);
-      });
-    }
+
+    SocialShare.shareInstagramStory(
+      appId: FFAppState().facebookAppID,
+      imagePath: imagePath,
+      backgroundResourcePath: backgroundImagePath,
+    ).then((data) {
+      print(data);
+    });
   } else {
-    String colorTop = backgroundTopColor!.toHex().toString().toUpperCase();
-    String colorBottom =
-        backgroundBottomColor!.toHex().toString().toUpperCase();
-    if (url != null) {
-      SocialShare.shareInstagramStory(
-        appId: FFAppState().facebookAppID,
-        imagePath: imagePath,
-        backgroundTopColor: colorTop,
-        backgroundBottomColor: colorBottom,
-        attributionURL: url,
-      ).then((data) {
-        print(data);
-      });
-    } else {
-      SocialShare.shareInstagramStory(
-        appId: FFAppState().facebookAppID,
-        imagePath: imagePath,
-        backgroundTopColor: colorTop,
-        backgroundBottomColor: colorBottom,
-      ).then((data) {
-        print(data);
-      });
-    }
+    String colorTop = "#" + backgroundTopColor!.toHex().toString();
+    String colorBottom = "#" + backgroundBottomColor!.toHex().toString();
+
+    SocialShare.shareInstagramStory(
+      appId: FFAppState().facebookAppID,
+      imagePath: imagePath,
+      backgroundTopColor: colorTop,
+      backgroundBottomColor: colorBottom,
+    ).then((data) {
+      print(data);
+    });
   }
 }
 

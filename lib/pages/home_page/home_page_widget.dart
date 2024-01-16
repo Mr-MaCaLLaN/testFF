@@ -101,61 +101,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () async {
-                        final selectedMedia =
-                            await selectMediaWithSourceBottomSheet(
-                          context: context,
-                          allowPhoto: true,
-                        );
-                        if (selectedMedia != null &&
-                            selectedMedia.every((m) =>
-                                validateFileFormat(m.storagePath, context))) {
-                          setState(() => _model.isDataUploading1 = true);
-                          var selectedUploadedFiles = <FFUploadedFile>[];
-
-                          var downloadUrls = <String>[];
-                          try {
-                            selectedUploadedFiles = selectedMedia
-                                .map((m) => FFUploadedFile(
-                                      name: m.storagePath.split('/').last,
-                                      bytes: m.bytes,
-                                      height: m.dimensions?.height,
-                                      width: m.dimensions?.width,
-                                      blurHash: m.blurHash,
-                                    ))
-                                .toList();
-
-                            downloadUrls = (await Future.wait(
-                              selectedMedia.map(
-                                (m) async =>
-                                    await uploadData(m.storagePath, m.bytes),
-                              ),
-                            ))
-                                .where((u) => u != null)
-                                .map((u) => u!)
-                                .toList();
-                          } finally {
-                            _model.isDataUploading1 = false;
-                          }
-                          if (selectedUploadedFiles.length ==
-                                  selectedMedia.length &&
-                              downloadUrls.length == selectedMedia.length) {
-                            setState(() {
-                              _model.uploadedLocalFile1 =
-                                  selectedUploadedFiles.first;
-                              _model.uploadedFileUrl1 = downloadUrls.first;
-                            });
-                          } else {
-                            setState(() {});
-                            return;
-                          }
-                        }
-
-                        await ImagesRecord.collection
-                            .doc()
-                            .set(createImagesRecordData(
-                              image: _model.uploadedFileUrl1,
-                            ));
+                      onPressed: () {
+                        print('Button pressed ...');
                       },
                       text: 'Upload background',
                       options: FFButtonOptions(
@@ -205,7 +152,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         if (selectedMedia != null &&
                             selectedMedia.every((m) =>
                                 validateFileFormat(m.storagePath, context))) {
-                          setState(() => _model.isDataUploading2 = true);
+                          setState(() => _model.isDataUploading = true);
                           var selectedUploadedFiles = <FFUploadedFile>[];
 
                           var downloadUrls = <String>[];
@@ -230,15 +177,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .map((u) => u!)
                                 .toList();
                           } finally {
-                            _model.isDataUploading2 = false;
+                            _model.isDataUploading = false;
                           }
                           if (selectedUploadedFiles.length ==
                                   selectedMedia.length &&
                               downloadUrls.length == selectedMedia.length) {
                             setState(() {
-                              _model.uploadedLocalFile2 =
+                              _model.uploadedLocalFile =
                                   selectedUploadedFiles.first;
-                              _model.uploadedFileUrl2 = downloadUrls.first;
+                              _model.uploadedFileUrl = downloadUrls.first;
                             });
                           } else {
                             setState(() {});
@@ -249,7 +196,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         await ImagesRecord.collection
                             .doc()
                             .set(createImagesRecordData(
-                              image: _model.uploadedFileUrl2,
+                              image: _model.uploadedFileUrl,
                             ));
                       },
                       text: 'Upload Image',
@@ -284,7 +231,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           homePageImagesRecordList.first.image,
                           Color(0x00000000),
                           Color(0x00000000),
-                          null,
                         );
                       },
                       text: 'Share BG + Image',
@@ -319,7 +265,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           homePageImagesRecordList.first.image,
                           Color(0x00000000),
                           Color(0x00000000),
-                          'https://stackoverflow.com/questions/48435365/get-download-url-from-firebase-storage-in-flutter',
                         );
                       },
                       text: 'Share BG + Image + URl',
@@ -354,7 +299,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           null,
                           Color(0xFFFF0000),
                           Color(0xFF7DF958),
-                          'https://stackoverflow.com/questions/50081213/how-do-i-use-hexadecimal-color-strings-in-flutter',
                         );
                       },
                       text: 'Share Color + Image + URL',
@@ -389,7 +333,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           null,
                           Color(0xFFFF0000),
                           Color(0xFF7DF958),
-                          null,
                         );
                       },
                       text: 'Share Color + Image',
