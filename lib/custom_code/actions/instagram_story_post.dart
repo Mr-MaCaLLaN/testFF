@@ -11,7 +11,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as Dio;
 import 'package:social_share/social_share.dart';
 
 Future instagramStoryPost(
@@ -24,16 +24,16 @@ Future instagramStoryPost(
   String backgroundImagePath = "";
 
   final tempDir = await getApplicationDocumentsDirectory();
-  var response = await Dio()
-      .get(image, options: Options(responseType: ResponseType.bytes));
+  var response = await Dio.Dio()
+      .get(image, options: Dio.Options(responseType: Dio.ResponseType.bytes));
   final assetPath = '${tempDir.path}/post.png';
   File file = await File(assetPath).create();
   await file.writeAsBytes(Uint8List.fromList(response.data));
   imagePath = file.path;
 
   if (backgroundImage != null) {
-    var responseBackground = await Dio().get(backgroundImage!,
-        options: Options(responseType: ResponseType.bytes));
+    var responseBackground = await Dio.Dio().get(backgroundImage!,
+        options: Dio.Options(responseType: Dio.ResponseType.bytes));
     final assetPathBackground = '${tempDir.path}/background.png';
     File fileBackground = await File(assetPathBackground).create();
     await fileBackground
