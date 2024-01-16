@@ -22,7 +22,18 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
-	<array>        <dict>
+	<array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!--FF_REVERSED_CLIENT_ID-->
+                
+            </array>
+        </dict>
+
+        <dict>
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
@@ -36,27 +47,27 @@
     <key>FlutterDeepLinkingEnabled</key>
     <true/>
 
-<key>LSApplicationQueriesSchemes</key>
-		<array>
-			<string>instagram-stories</string>
-			<string>facebook-stories</string>
-			<string>facebook</string>
-			<string>instagram</string>
-			<string>twitter</string>
-			<string>whatsapp</string>
-			<string>tg</string>
-		</array>
+
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
-
 	<key>NSCameraUsageDescription</key>
-    <string>Photo</string>
+    <string>gnxdgh</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>Photo</string>
+    <string>HTERSHTRES</string>
 
+<key>LSApplicationQueriesSchemes</key>
+	<array>
+	<string>instagram-stories</string>
+	<string>facebook-stories</string>
+	<string>facebook</string>
+	<string>instagram</string>
+	<string>twitter</string>
+	<string>whatsapp</string>
+    <string>tg</string>
+	</array>
 
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "711078847474",
+    "project_id": "share-vqbvjq",
+    "storage_bucket": "share-vqbvjq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711078847474:android:7e71fea2130c7c1dd0016b",
+        "android_client_info": {
+          "package_name": "social.mvo.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6N5n4dqO7uYFt8SuOp9ds58jIoYfWgdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
